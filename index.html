@@ -178,7 +178,7 @@
 
         /* Container & Cards */
         .container {
-            max-width: 680px;
+            max-width: 720px;
             margin: 0 auto;
             padding: 80px 20px 40px 20px;
             position: relative;
@@ -221,6 +221,47 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3);
+        }
+
+        /* Photo Gallery Styling */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 18px 10px;
+            border-radius: 12px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .polaroid:nth-child(even) { transform: rotate(-2deg); }
+        .polaroid:nth-child(odd) { transform: rotate(2deg); }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.3);
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .polaroid-caption {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-top: 8px;
         }
 
         .message-box {
@@ -369,9 +410,7 @@
 
     <!-- Audio Player -->
     <audio id="bgAudio" loop preload="auto">
-        <!-- Direct song link placeholder -->
         <source src="izinkan-aku.mp3" type="audio/mpeg">
-        <source src="https://files.catbox.moe/6r8q0r.mp3" type="audio/mpeg">
     </audio>
 
     <div class="container">
@@ -380,6 +419,51 @@
         <div class="card">
             <h1 class="title">HAPPY BIRTHDAY MY SAYANG ASPARAGUS!! 🎉🎂</h1>
             <div class="badge">✨ OFFICIALLY 21 YEARS OLD ✨</div>
+        </div>
+
+        <!-- Photo Memories Gallery Card -->
+        <div class="card">
+            <h2 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 8px;">📸 Our Precious Memories</h2>
+            <p style="font-size: 0.88rem; color: #8c6872;">Every moment with you is my favorite 💕</p>
+            
+            <div class="photo-gallery">
+                <div class="polaroid">
+                    <img src="photo1.jpg" alt="Memory 1">
+                    <div class="polaroid-caption">Cute Skincare Routine 🤍</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo2.jpg" alt="Memory 2">
+                    <div class="polaroid-caption">Matching Outfits ✨</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo3.jpg" alt="Memory 3">
+                    <div class="polaroid-caption">Sweet Mask Moments 😷❤️</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo4.jpg" alt="Memory 4">
+                    <div class="polaroid-caption">Late Night FaceTimes 📱</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo5.jpg" alt="Memory 5">
+                    <div class="polaroid-caption">Holding Hands Drive 🚗</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo6.jpg" alt="Memory 6">
+                    <div class="polaroid-caption">Walks Together 🌆</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo7.jpg" alt="Memory 7">
+                    <div class="polaroid-caption">Funny Silly Moments 🤪</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo8.jpg" alt="Memory 8">
+                    <div class="polaroid-caption">Marathon Finisher 🏃‍♂️🏃‍♀️</div>
+                </div>
+                <div class="polaroid">
+                    <img src="photo9.jpg" alt="Memory 9">
+                    <div class="polaroid-caption">Caring for Each Other 🩹</div>
+                </div>
+            </div>
         </div>
 
         <!-- Birthday Message Card -->
@@ -495,7 +579,7 @@
             eq.classList.remove('playing');
         }
 
-        // Handle Custom MP3 Upload (so you can load your exact izinkan-aku.mp3 file anytime)
+        // Handle Custom MP3 Upload
         function handleAudioUpload(event) {
             const file = event.target.files[0];
             if (file) {
