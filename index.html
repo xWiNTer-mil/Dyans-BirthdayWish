@@ -73,19 +73,46 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Floating background hearts */
+        /* Floating background items (Hearts & Photos) */
         .heart {
             position: fixed;
             font-size: 20px;
             color: rgba(255, 107, 139, 0.35);
-            animation: floatUp 8s infinite linear;
+            animation: floatUp 10s infinite linear;
             z-index: 0;
             pointer-events: none;
         }
 
+        .floating-photo {
+            position: fixed;
+            background: white;
+            padding: 6px 6px 12px 6px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            animation: floatUpPhoto 14s infinite ease-in-out;
+            z-index: 0;
+            opacity: 0.85;
+            pointer-events: none;
+            width: 110px;
+        }
+
+        .floating-photo img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
         @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes floatUpPhoto {
+            0% { transform: translateY(105vh) rotate(-10deg); opacity: 0; }
+            10% { opacity: 0.85; }
+            90% { opacity: 0.85; }
+            100% { transform: translateY(-20vh) rotate(15deg); opacity: 0; }
         }
 
         /* Music Bar Top Widget */
@@ -178,7 +205,7 @@
 
         /* Container & Cards */
         .container {
-            max-width: 720px;
+            max-width: 680px;
             margin: 0 auto;
             padding: 80px 20px 40px 20px;
             position: relative;
@@ -221,47 +248,6 @@
             font-size: 0.9rem;
             margin-bottom: 20px;
             box-shadow: 0 4px 12px rgba(255, 107, 139, 0.3);
-        }
-
-        /* Photo Gallery Styling */
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 18px;
-            margin-top: 20px;
-        }
-
-        .polaroid {
-            background: white;
-            padding: 10px 10px 18px 10px;
-            border-radius: 12px;
-            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .polaroid:nth-child(even) { transform: rotate(-2deg); }
-        .polaroid:nth-child(odd) { transform: rotate(2deg); }
-
-        .polaroid:hover {
-            transform: scale(1.05) rotate(0deg);
-            z-index: 10;
-            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.3);
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 190px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .polaroid-caption {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.1rem;
-            color: var(--primary);
-            margin-top: 8px;
         }
 
         .message-box {
@@ -388,8 +374,9 @@
         <button class="splash-btn" onclick="openWish()">Tap to Open Wish 🎁</button>
     </div>
 
-    <!-- Background Hearts -->
+    <!-- Background Elements -->
     <div id="heartsContainer"></div>
+    <div id="photosContainer"></div>
 
     <!-- Music Player Control Pill -->
     <div class="music-bar">
@@ -402,7 +389,7 @@
                 <div class="eq-bar"></div>
             </div>
         </div>
-        <label class="upload-label" for="audioUpload" title="If song doesn't load online, click to select izinkan-aku.mp3 from your phone/PC">
+        <label class="upload-label" for="audioUpload" title="Click to select izinkan-aku.mp3 from your device if needed">
             📁 Load MP3
         </label>
         <input type="file" id="audioUpload" class="custom-audio-input" accept="audio/*" onchange="handleAudioUpload(event)">
@@ -419,51 +406,6 @@
         <div class="card">
             <h1 class="title">HAPPY BIRTHDAY MY SAYANG ASPARAGUS!! 🎉🎂</h1>
             <div class="badge">✨ OFFICIALLY 21 YEARS OLD ✨</div>
-        </div>
-
-        <!-- Photo Memories Gallery Card -->
-        <div class="card">
-            <h2 style="color: var(--primary); font-size: 1.5rem; margin-bottom: 8px;">📸 Our Precious Memories</h2>
-            <p style="font-size: 0.88rem; color: #8c6872;">Every moment with you is my favorite 💕</p>
-            
-            <div class="photo-gallery">
-                <div class="polaroid">
-                    <img src="photo1.jpg" alt="Memory 1">
-                    <div class="polaroid-caption">Cute Skincare Routine 🤍</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo2.jpg" alt="Memory 2">
-                    <div class="polaroid-caption">Matching Outfits ✨</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo3.jpg" alt="Memory 3">
-                    <div class="polaroid-caption">Sweet Mask Moments 😷❤️</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo4.jpg" alt="Memory 4">
-                    <div class="polaroid-caption">Late Night FaceTimes 📱</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo5.jpg" alt="Memory 5">
-                    <div class="polaroid-caption">Holding Hands Drive 🚗</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo6.jpg" alt="Memory 6">
-                    <div class="polaroid-caption">Walks Together 🌆</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo7.jpg" alt="Memory 7">
-                    <div class="polaroid-caption">Funny Silly Moments 🤪</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo8.jpg" alt="Memory 8">
-                    <div class="polaroid-caption">Marathon Finisher 🏃‍♂️🏃‍♀️</div>
-                </div>
-                <div class="polaroid">
-                    <img src="photo9.jpg" alt="Memory 9">
-                    <div class="polaroid-caption">Caring for Each Other 🩹</div>
-                </div>
-            </div>
         </div>
 
         <!-- Birthday Message Card -->
@@ -536,17 +478,51 @@
         function createHearts() {
             const container = document.getElementById('heartsContainer');
             const heartIcons = ['❤️', '💖', '🌸', '✨', '💕', '🎂'];
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < 15; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
                 heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
                 heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                heart.style.animationDuration = (Math.random() * 5 + 7) + 's';
                 heart.style.animationDelay = (Math.random() * 5) + 's';
                 container.appendChild(heart);
             }
         }
+
+        // Floating photos in background
+        const photoFiles = [
+            'photo1.jpg', 'photo2.jpg', 'photo3.jpg',
+            'photo4.jpg', 'photo5.jpg', 'photo6.jpg',
+            'photo7.jpg', 'photo8.jpg', 'photo9.jpg'
+        ];
+
+        function createFloatingPhotos() {
+            const container = document.getElementById('photosContainer');
+            photoFiles.forEach((file, index) => {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'floating-photo';
+                
+                // Distribute horizontally across screen sides
+                const isLeft = index % 2 === 0;
+                const pos = isLeft ? (Math.random() * 18 + 2) : (Math.random() * 18 + 78);
+                photoDiv.style.left = pos + 'vw';
+                
+                const duration = Math.random() * 6 + 12;
+                const delay = index * 1.8;
+                photoDiv.style.animationDuration = duration + 's';
+                photoDiv.style.animationDelay = delay + 's';
+
+                const img = document.createElement('img');
+                img.src = file;
+                img.alt = 'Memory';
+                
+                photoDiv.appendChild(img);
+                container.appendChild(photoDiv);
+            });
+        }
+
         createHearts();
+        createFloatingPhotos();
 
         // Open Website & Play Song
         function openWish() {
@@ -569,7 +545,7 @@
                 playBtn.innerText = '❚❚';
                 eq.classList.add('playing');
             }).catch(err => {
-                console.log("Audio autoplay prevented. User action required.");
+                console.log("Audio autoplay prevented.");
             });
         }
 
@@ -579,7 +555,6 @@
             eq.classList.remove('playing');
         }
 
-        // Handle Custom MP3 Upload
         function handleAudioUpload(event) {
             const file = event.target.files[0];
             if (file) {
